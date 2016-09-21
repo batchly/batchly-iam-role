@@ -65,7 +65,7 @@
                            "Fn::Join":[  
                               ":",
                               [  
-                                 "arn:aws:sqs:*:",
+                                 "arn:aws:sqs:*",
                                  {  
                                     "Ref" : "AWS::AccountId"
                                  },
@@ -77,7 +77,7 @@
                            "Fn::Join":[  
                               ":",
                               [  
-                                 "arn:aws:sqs:*:",
+                                 "arn:aws:sqs:*",
                                  {  
                                     "Ref" : "AWS::AccountId" 
                                  },
@@ -149,7 +149,8 @@
                         "s3:Get*",
                         "s3:List*",
                         "s3:Put*",
-                        "s3:RestoreObject"
+                        "s3:RestoreObject",
+						"s3:CreateBucket"
                      ],
                      "Resource":"*"
                   },
