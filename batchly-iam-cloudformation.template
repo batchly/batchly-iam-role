@@ -168,6 +168,8 @@
                         "autoscaling:SetDesiredCapacity",
                         "autoscaling:TerminateInstanceInAutoScalingGroup",
                         "autoscaling:UpdateAutoScalingGroup",
+						"autoscaling:SuspendProcesses",
+						"autoscaling:ResumeProcesses",
                         "ecs:Describe*",
                         "ecs:List*",
                         "ecs:DeregisterContainerInstance",
