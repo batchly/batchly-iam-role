@@ -168,6 +168,8 @@
                         "autoscaling:SetDesiredCapacity",
                         "autoscaling:TerminateInstanceInAutoScalingGroup",
                         "autoscaling:UpdateAutoScalingGroup",
+						"autoscaling:SuspendProcesses",
+						"autoscaling:ResumeProcesses",
                         "ecs:Describe*",
                         "ecs:List*",
                         "ecs:DeregisterContainerInstance",
@@ -184,7 +186,7 @@
                         "elasticbeanstalk:RetrieveEnvironmentInfo",
                         "elasticbeanstalk:ValidateConfigurationSettings",
                         "elasticbeanstalk:RestartAppServer",
-                        "elasticmapreduce:*"
+                        "cloudformation:ListStackResources"
                      ],
                      "Resource":[  
                         "*"
