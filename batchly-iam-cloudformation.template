@@ -186,7 +186,7 @@
                         "elasticbeanstalk:RetrieveEnvironmentInfo",
                         "elasticbeanstalk:ValidateConfigurationSettings",
                         "elasticbeanstalk:RestartAppServer",
-                        "elasticmapreduce:*"
+                        "cloudformation:ListStackResources"
                      ],
                      "Resource":[  
                         "*"
