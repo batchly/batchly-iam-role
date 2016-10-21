@@ -291,7 +291,8 @@
                      "Action":[  
                         "iam:ListInstanceProfiles",
                         "iam:ListInstanceProfilesForRole",
-                        "iam:PassRole"
+                        "iam:PassRole",
+						"iam:GetInstanceProfile"
                      ],
                      "Effect":"Allow",
                      "Resource":"*"
