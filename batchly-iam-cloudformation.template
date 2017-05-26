@@ -198,7 +198,9 @@
                         "elasticbeanstalk:ValidateConfigurationSettings",
                         "elasticbeanstalk:RestartAppServer",
                         "cloudformation:ListStackResources",
-						"cloudformation:Describe*"
+						"cloudformation:Describe*",
+						"opsworks:Describe*",
+						"opsworks:DeregisterInstance"
                      ],
                      "Resource":[  
                         "*"
