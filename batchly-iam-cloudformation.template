@@ -198,13 +198,25 @@
                         "elasticbeanstalk:ValidateConfigurationSettings",
                         "elasticbeanstalk:RestartAppServer",
                         "cloudformation:ListStackResources",
-						"cloudformation:Describe*",
-						"opsworks:Describe*",
-						"opsworks:DeregisterInstance"
+						"cloudformation:Describe*"
+						
                      ],
                      "Resource":[  
                         "*"
                      ]
+                  },
+				  {  
+                     "Action":[  
+                        "opsworks:Describe*",
+                        "opsworks:Deregister*",
+                        "opsworks:Register*",
+                        "opsworks:Update*",
+                        "opsworks:Assign*",
+                        "opsworks:Get*"
+                     ],
+                     "Resource":"*",
+                     "Effect":"Allow",
+                     "Sid":"OpsWorksPermissions"
                   },
 				  				{  
                 "Sid":"StmtMapReducePermissions",
