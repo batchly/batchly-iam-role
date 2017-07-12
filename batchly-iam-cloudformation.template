@@ -121,7 +121,8 @@
 						"ec2:StartInstances",
 						"ec2:StopInstances",
                         "ec2:GetConsoleOutput",
-                        "ec2:AuthorizeSecurityGroup*"
+                        "ec2:AuthorizeSecurityGroup*",
+						""
 						
                      ],
                      "Effect":"Allow",
@@ -186,9 +187,9 @@
                         "ecs:DeregisterContainerInstance",
                         "ecs:RegisterTaskDefinition",
                         "elasticloadbalancing:ConfigureHealthCheck",
-                        "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                        "elasticloadbalancing:Deregister*",
                         "elasticloadbalancing:Describe*",
-                        "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                        "elasticloadbalancing:Register*",
                         "iam:ListRoles",
                         "logs:CreateLogGroup",
                         "logs:PutRetentionPolicy",
@@ -201,9 +202,7 @@
 						"cloudformation:Describe*"
 						
                      ],
-                     "Resource":[  
-                        "*"
-                     ]
+                     "Resource":"*"
                   },
 				  {  
                      "Action":[  
