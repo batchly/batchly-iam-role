@@ -1,0 +1,29 @@
+{  
+   "AWSTemplateFormatVersion":"2010-09-09",
+   "Description":"Cloudformation template to add cloudformation describe and list permissions in a new policy to batchly-trusted-role",
+   "Resources":{  
+    
+      "BatchlyCloudformationAccessPolicy":{  
+         "Type":"AWS::IAM::Policy",
+        
+         "Properties":{  
+            "PolicyDocument":{  
+               "Version":"2012-10-17",
+               "Statement":  
+                  {  
+                     "Sid":"StmtCloudformationPermissions",
+                     "Action":[  
+                        "cloudformation:ListStackResources",
+						"cloudformation:Describe*"
+                     ],
+                     "Effect":"Allow",
+                     "Resource":"*"
+                  }
+				 
+                 },
+            "Roles": ["batchly-trusted-role"],
+			"PolicyName" : "batchly-access-policy-cloudformation"
+         }
+      }
+   }
+}
