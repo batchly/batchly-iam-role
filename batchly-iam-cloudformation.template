@@ -31,8 +31,8 @@
                   }
                ]
             },
-			"Path": "/batchly/",
-			"RoleName" : "batchly-trusted-role"
+            "Path":"/batchly/",
+            "RoleName":"batchly-trusted-role"
          }
       },
       "BatchlyAccessPolicy":{  
@@ -67,7 +67,7 @@
                               [  
                                  "arn:aws:sqs:*",
                                  {  
-                                    "Ref" : "AWS::AccountId"
+                                    "Ref":"AWS::AccountId"
                                  },
                                  "R-*"
                               ]
@@ -79,7 +79,7 @@
                               [  
                                  "arn:aws:sqs:*",
                                  {  
-                                    "Ref" : "AWS::AccountId" 
+                                    "Ref":"AWS::AccountId"
                                  },
                                  "batchly-*"
                               ]
@@ -118,12 +118,11 @@
                         "ec2:Describe*",
                         "ec2:RequestSpotInstances",
                         "ec2:RunInstances",
-						"ec2:StartInstances",
-						"ec2:StopInstances",
+                        "ec2:StartInstances",
+                        "ec2:StopInstances",
                         "ec2:GetConsoleOutput",
                         "ec2:AuthorizeSecurityGroup*",
-						""
-						
+						"ec2:AssociateAddress"
                      ],
                      "Effect":"Allow",
                      "Resource":"*"
@@ -136,14 +135,14 @@
                         "ec2:StopInstances",
                         "ec2:TerminateInstances",
                         "ec2:DeleteVolume",
-						"ec2:DeleteSecurityGroup"
+                        "ec2:DeleteSecurityGroup"
                      ],
                      "Resource":"*",
-                      "Condition": {
-						"StringLike": {
-							"ec2:ResourceTag/Batchly": "R-*"
-						}
-					}
+                     "Condition":{  
+                        "StringLike":{  
+                           "ec2:ResourceTag/Batchly":"R-*"
+                        }
+                     }
                   },
                   {  
                      "Sid":"Stmt1456144202000",
@@ -154,9 +153,22 @@
                         "s3:List*",
                         "s3:Put*",
                         "s3:RestoreObject",
-						"s3:CreateBucket"
+                        "s3:CreateBucket"
                      ],
                      "Resource":"*"
+                  },
+                  {  
+                     "Action":[  
+                        "opsworks:Describe*",
+                        "opsworks:Deregister*",
+                        "opsworks:Register*",
+                        "opsworks:Update*",
+                        "opsworks:Assign*",
+                        "opsworks:Get*"
+                     ],
+                     "Resource":"*",
+                     "Effect":"Allow",
+                     "Sid":"OpsWorksPermissions"
                   },
                   {  
                      "Sid":"AllowOperations",
@@ -171,17 +183,18 @@
                         "autoscaling:SetDesiredCapacity",
                         "autoscaling:TerminateInstanceInAutoScalingGroup",
                         "autoscaling:UpdateAutoScalingGroup",
-						"autoscaling:SuspendProcesses",
-						"autoscaling:ResumeProcesses",
-						"autoscaling:AttachInstances",
-						"autoscaling:CreateAutoScalingGroup",
-						"autoscaling:CreateLaunchConfiguration",
-						"autoscaling:DeleteAutoScalingGroup",
-						"autoscaling:DeleteLaunchConfiguration",
-						"autoscaling:DeletePolicy",
-						"autoscaling:DetachInstances",
-						"autoscaling:PutScalingPolicy",
-						"autoscaling:SetInstanceProtection",
+                        "autoscaling:SuspendProcesses",
+                        "autoscaling:ResumeProcesses",
+                        "autoscaling:AttachInstances",
+                        "autoscaling:CreateAutoScalingGroup",
+                        "autoscaling:CreateLaunchConfiguration",
+                        "autoscaling:DeleteAutoScalingGroup",
+                        "autoscaling:DeleteLaunchConfiguration",
+                        "autoscaling:DeletePolicy",
+                        "autoscaling:DetachInstances",
+                        "autoscaling:PutScalingPolicy",
+                        "autoscaling:SetInstanceProtection",
+						"autoscaling:DeleteTags",
                         "ecs:Describe*",
                         "ecs:List*",
                         "ecs:DeregisterContainerInstance",
@@ -199,55 +212,43 @@
                         "elasticbeanstalk:ValidateConfigurationSettings",
                         "elasticbeanstalk:RestartAppServer",
                         "cloudformation:ListStackResources",
-						"cloudformation:Describe*"
-						
+                        "cloudformation:Describe*"
                      ],
-                     "Resource":"*"
+                     "Resource":[  
+                        "*"
+                     ]
                   },
-				  {  
+                  {  
+                     "Sid":"StmtMapReducePermissions",
                      "Action":[  
-                        "opsworks:Describe*",
-                        "opsworks:Deregister*",
-                        "opsworks:Register*",
-                        "opsworks:Update*",
-                        "opsworks:Assign*",
-                        "opsworks:Get*"
-                     ],
-                     "Resource":"*",
-                     "Effect":"Allow",
-                     "Sid":"OpsWorksPermissions"
-                  },
-				  				{  
-                "Sid":"StmtMapReducePermissions",
-                 "Action":[  
-                         "elasticmapreduce:AddInstanceGroups",
-						"elasticmapreduce:AddTags",
-						"elasticmapreduce:AddJobFlowSteps",
-						"elasticmapreduce:DescribeJobFlows",
-						"elasticmapreduce:DescribeCluster",
-						"elasticmapreduce:DescribeStep",
-						"elasticmapreduce:ListBootstrapActions",
-						"elasticmapreduce:ListClusters",
-						"elasticmapreduce:ListInstanceGroups",
-						"elasticmapreduce:ListInstances",
-						"elasticmapreduce:ListSteps",
-						"elasticmapreduce:ModifyInstanceGroups",
-						"elasticmapreduce:RunJobFlow"
+                        "elasticmapreduce:AddInstanceGroups",
+                        "elasticmapreduce:AddTags",
+                        "elasticmapreduce:AddJobFlowSteps",
+                        "elasticmapreduce:DescribeJobFlows",
+                        "elasticmapreduce:DescribeCluster",
+                        "elasticmapreduce:DescribeStep",
+                        "elasticmapreduce:ListBootstrapActions",
+                        "elasticmapreduce:ListClusters",
+                        "elasticmapreduce:ListInstanceGroups",
+                        "elasticmapreduce:ListInstances",
+                        "elasticmapreduce:ListSteps",
+                        "elasticmapreduce:ModifyInstanceGroups",
+                        "elasticmapreduce:RunJobFlow"
                      ],
                      "Effect":"Allow",
                      "Resource":"*"
                   },
                   {  
                      "Sid":"StmtMapReducePermissionsForBatchlyResources",
-                     "Action":[
-						"elasticmapreduce:RemoveTags",
-						"elasticmapreduce:SetTerminationProtection",
-						"elasticmapreduce:SetVisibleToAllUsers",
-						"elasticmapreduce:TerminateJobFlows"
-					 ],
+                     "Action":[  
+                        "elasticmapreduce:RemoveTags",
+                        "elasticmapreduce:SetTerminationProtection",
+                        "elasticmapreduce:SetVisibleToAllUsers",
+                        "elasticmapreduce:TerminateJobFlows"
+                     ],
                      "Effect":"Allow",
-                     "Resource": "*",
-					 "Condition":{  
+                     "Resource":"*",
+                     "Condition":{  
                         "StringLike":{  
                            "elasticmapreduce:ResourceTag/Batchly":"R-*"
                         }
@@ -267,7 +268,7 @@
                               [  
                                  "arn:aws:iam:",
                                  {  
-                                    "Ref" : "AWS::AccountId" 
+                                    "Ref":"AWS::AccountId"
                                  },
                                  "role/batchly/"
                               ]
@@ -279,7 +280,7 @@
                               [  
                                  "arn:aws:iam:",
                                  {  
-                                    "Ref" : "AWS::AccountId" 
+                                    "Ref":"AWS::AccountId"
                                  },
                                  "role/batchly/batchly-trusted-role"
                               ]
@@ -291,7 +292,7 @@
                               [  
                                  "arn:aws:iam:",
                                  {  
-                                    "Ref" : "AWS::AccountId" 
+                                    "Ref":"AWS::AccountId"
                                  },
                                  "instance-profile/*"
                               ]
@@ -303,7 +304,7 @@
                               [  
                                  "arn:aws:iam:",
                                  {  
-                                    "Ref" : "AWS::AccountId" 
+                                    "Ref":"AWS::AccountId"
                                  },
                                  "policy/batchly-access-policy"
                               ]
@@ -317,15 +318,34 @@
                         "iam:ListInstanceProfiles",
                         "iam:ListInstanceProfilesForRole",
                         "iam:PassRole",
-						"iam:GetInstanceProfile"
+                        "iam:GetInstanceProfile"
                      ],
                      "Effect":"Allow",
                      "Resource":"*"
-                  }
+                  },
+				  {
+					"Sid": "Stmt1500272831001",
+					"Effect": "Allow",
+					"Action": [
+						"cloudformation:DescribeStacks"
+					],
+					"Resource": "*"
+				  },
+				  {
+					"Action": [
+					"organizations:ListAccounts",
+					"organizations:DescribeOrganization"
+					],
+					"Resource": "*",
+					"Effect": "Allow",
+					"Sid": "StmtOrganizations"
+				  }
                ]
             },
-            "Roles": ["batchly-trusted-role"],
-			"PolicyName" : "batchly-access-policy"
+            "Roles":[  
+               "batchly-trusted-role"
+            ],
+            "PolicyName":"batchly-access-policy"
          }
       },
       "BatchlyInstanceProfile":{  
@@ -344,7 +364,6 @@
       }
    },
    "Outputs":{  
-     
       "RoleARN":{  
          "Description":"The arn of the batchly-trusted-role",
          "Value":{  
@@ -353,6 +372,10 @@
                "Arn"
             ]
          }
+      },
+	  "Version":{  
+         "Description":"The version of Cmpute IAM template",
+         "Value": "v2017.09.28"
       }
    }
 }
